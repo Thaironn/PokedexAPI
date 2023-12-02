@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
   <title>Pokémon API</title>
   <link rel="stylesheet" href="poke.css">
-  
 </head>
 <body>
-  
   <div id="container">
     <h1>Listagem de Pokémon</h1>
-    
     <a href="pc.html">
-    <button>
-      <img src="https://static.wikia.nocookie.net/tkoc/images/8/87/Pok%C3%A9_Ball.png/revision/latest?cb=20200626174824&path-prefix=pt-br" style="width: 50px; height: 50px;" alt="Descrição da imagem">
-    </button>
-  </a>
-</div>
-
-  <div id="pokemon-list">
-    
+      <button>
+        <img src="https://static.wikia.nocookie.net/tkoc/images/8/87/Pok%C3%A9_Ball.png/revision/latest?cb=20200626174824&path-prefix=pt-br" style="width: 50px; height: 50px;" alt="Descrição da imagem">
+      </button>
+    </a>
   </div>
+
+  <div id="pokemon-list"></div>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -38,37 +38,31 @@
             fetch(individualPokemonUrl)
               .then(response => response.json())
               .then(individualData => {
-                const imageUrl = individualData.sprites.front_default;
-                
+                const imageUrl = individualData.sprites.front_default; //Foto do pokemon
+                const name = pokemon.name; //Nome do pokemon
+                const types = individualData.types.map(type => type.type.name).join('  '); //Adiciona os tipos
+
                 const listItem = document.createElement('div');
-                const name = document.createElement('span');
                 const image = document.createElement('img');
-                const tipo = document.createElement('div');  
+                const nameElement = document.createElement('span');
+                const typeElement = document.createElement('span');
+
+                listItem.classList.add('pokemon-item');
 
                 image.src = imageUrl;
-                image.alt = pokemon.name;
-                name.textContent = pokemon.name;
+                image.alt = name;
 
-                individualData.types.forEach(type => {
-                  const typeImg = document.createElement('img');
-                  typeImg.src = type.url;
-                  typeImg.alt = type.type.name;
-                  tipo.appendChild(typeImg);
-
-                  let cor = "red"
-                  if(type.includes("water")){
-                    cor = "blue"
-                  }
-
-                });
+                nameElement.textContent = name;
+                typeElement.textContent = types;
 
                 listItem.appendChild(image);
-                listItem.appendChild(tipo);
-                listItem.appendChild(name);
+                listItem.appendChild(nameElement);
+                listItem.appendChild(typeElement);
                 pokemonList.appendChild(listItem);
               })
           });
         })
+        .catch(error => console.error('Error fetching Pokemon data:', error));
     });
   </script>
 </body>

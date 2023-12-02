@@ -5,18 +5,26 @@
   list-style: none;
 }
 
-#pokemon-list ul {
+#pokemon-list div {
+  display: flex;
+  justify-content: space-between; /* Distribui os itens uniformemente na linha */
+  background-color: chocolate;
   flex: 0 0 calc(33.333% - 20px);
   box-sizing: border-box;
   text-align: center;
   border: 1px solid rgb(29, 26, 26);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 10px;
+
 }
 
 #pokemon-list img {
   max-width: 100%;
+  background-color: aqua;
+  order: 3;
 }
+
+#pokemon-list 
+
 
 button {
   padding: 0;
