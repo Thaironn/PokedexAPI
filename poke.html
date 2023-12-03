@@ -48,8 +48,6 @@
             normal: '#F5F5F5'
         };
 
-        const mainTypes = Object.keys(colors);
-
         const fetchPokemons = async () => {
             for (let i = 1; i < pokemonCount; i++) {
                 await getPokemons(i);
@@ -64,55 +62,85 @@
         };
 
         const pokemonCard = (poke) => {
-            const card = document.createElement('div');
-            card.classList.add("pokemon");
+        const card = document.createElement('div');
+        card.classList.add("pokemon");
 
-            const name = poke.name[0].toUpperCase() + poke.name.slice(1); //Nome do pokemon
-            const id = poke.id.toString().padStart(3, '0'); //id do pokemon
+        const name = poke.name[0].toUpperCase() + poke.name.slice(1);
+        const id = poke.id.toString().padStart(3, '0');
 
-            const pokemonTypes = poke.types.map(type => type.type.name); //Encontra o tipo do pokeon
-            const type =  mainTypes.find(type => pokemonTypes.indexOf(type) > -1); //Tipo principal do pokemon
-            const color = colors[type]; //Cor do tipo
+        const pokemonTypes = poke.types.map(type => type.type.name);
+        const color = getBackgroundColor(pokemonTypes);
 
-            card.style.backgroundColor = color; //Vai mudar a coloração do card
+        card.style.backgroundColor = color;
 
-            const pokemonInnerHTML = `
+        const typesHTML = pokemonTypes.map(type => {
+        const typeClass = getTypeClass(type);
+        return `<span class="type ${typeClass}">${type}</span>`;
+    }).join(' ');
 
-                <div class="vercomprar">
+        const pokemonInnerHTML = `
 
-                  <a href="info.html">
-                    <button>
-                      <img src="https://e7.pngegg.com/pngimages/1002/949/png-clipart-certification-organization-energetics-magnifying-glass-others-glass-cdr.png" style="width: 50px; height: 50px;" alt="">
-                    </button>
-                  </a>
+          <div class="vercomprar">
 
-                  <a>
-                    <button>
-                      <img src="" style="width: 50px; height: 50px;" alt="">
-                    </button>
-                  </a>
+            <a href="info.html">
+              <button>Ver</button>
+            </a>
 
-                </div>    
+          </div>    
 
-                <div class="imgContainer">
-                  <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.id}.png" alt="${name}">
-                </div>
-                
-                <div class="info">
-                  <span class="number" style="color: white;">#${id}</span>
-                  <h3 class="name">${name}</h3>
-                  <small class="type"> Tipo: <span>${type}</span></small>
-                </div>
-            `; //Contrução de como vai ficar os pokemons
-            
-            card.innerHTML = pokemonInnerHTML;
+          <div class="imgContainer">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.id}.png" alt="${name}">
+          </div>
+          
+          <div class="info">
+              <span class="number">#${id}</span>
+              <h3 class="name">${name}</h3>
+              <small class="types">${typesHTML}</small>
+          </div>
+        `;
+    card.innerHTML = pokemonInnerHTML;
 
-            if (pokeContainer) {
-                pokeContainer.appendChild(card);
-            } else {
-                console.error("Elemento com ID 'pokeContainer' não encontrado.");
-            }
-        };
+    if (pokeContainer) {
+        pokeContainer.appendChild(card);
+    } else {
+        console.error("Elemento com ID 'pokeContainer' não encontrado.");
+    }
+};
+
+function getTypeClass(type) {
+    const lowercaseType = type.toLowerCase();
+    
+    // Mapeia o tipo para a classe correspondente
+    const typeClassMap = {
+        normal: 'normal-type',
+        fire: 'fire-type',
+        water: 'water-type',
+        grass: 'grass-type',
+        flying: 'flying-type',
+        fighting: 'fighting-type',
+        poison: 'poison-type',
+        electric: 'electric-type',
+        ground: 'ground-type',
+        rock: 'rock-type',
+        psychic: 'psychic-type',
+        ice: 'ice-type',
+        bug: 'bug-type',
+        ghost: 'ghost-type',
+        steel: 'steel-type',
+        dragon: 'dragon-type',
+        dark: 'dark-type',
+        fairy: 'fairy-type'
+        // Adicione mais tipos conforme necessário
+    };
+
+    return typeClassMap[lowercaseType] || '';
+}
+
+function getBackgroundColor(types) {
+    // pega a cor do primeiro tipo
+    return colors[types[0]] || colors.normal;
+}
+
 
         fetchPokemons();
     });
