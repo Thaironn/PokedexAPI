@@ -1,67 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
+<head>
+  <!-- ... (existing code) ... -->
   <title>Pokémon API</title>
   <link rel="stylesheet" href="poke.css">
 </head>
 
 <body>
 
-  <div id="container">
-    <h1>Pokédex</h1>
-    <a href="pc.html">
-      <button>
-        <img src="https://static.wikia.nocookie.net/tkoc/images/8/87/Pok%C3%A9_Ball.png/revision/latest?cb=20200626174824&path-prefix=pt-br" style="width: 50px; height: 50px;" alt="Descrição da imagem">
-      </button>
-    </a>
+  <div class="tabs">
+    <button class="tablink" onclick="openTab('pokemonsTab')">Pokémons</button>
+    <button class="tablink" onclick="openTab('pokedexTab')">Pokédex</button>
   </div>
 
-  <div class="pokeContainer" id="pokeContainer">
+  <div id="pokemonsTab" class="tabcontent">
+    <div class="pokeContainer" id="pokeContainer"></div>
+  </div>
 
+  <div id="pokedexTab" class="tabcontent">
+    <h1>Pokémons Capturados</h1>
+    <div class="pokeContainer" id="capturedContainer"></div>
   </div>
 
   <script>
+    const colors = {
+      fire: '#FF0000',
+      grass: '#90EE90',
+      electric: '#FCF7DE',
+      water: '#DEF3FD',
+      ground: '#f4e7da',
+      rock: '#d5d5d4',
+      fairy: '#fceaff',
+      poison: '#98d7a5',
+      bug: '#f8d5a3',
+      dragon: '#97b3e6',
+      psychic: '#eaeda1',
+      flying: '#F5F5F5',
+      fighting: '#E6E0D4',
+      normal: '#F5F5F5'
+    };
+
     document.addEventListener('DOMContentLoaded', async () => {
-        const pokeContainer = document.querySelector("#pokeContainer"); // Corrigido para pokeContainer
-        const pokemonCount = 20;
-        const colors = {
-            fire: '#FF0000', //Arrumar o tons das cores
-            grass: '#DEFDE0',
-            electric: '#FCF7DE',
-            water: '#DEF3FD',
-            ground: '#f4e7da',
-            rock: '#d5d5d4',
-            fairy: '#fceaff',
-            poison: '#98d7a5',
-            bug: '#f8d5a3',
-            dragon: '#97b3e6',
-            psychic: '#eaeda1',
-            flying: '#F5F5F5',
-            fighting: '#E6E0D4',
-            normal: '#F5F5F5'
-        };
+      const pokeContainer = document.querySelector("#pokeContainer");
+      const capturedContainer = document.querySelector("#capturedContainer");
+      const pokemonCount = 20;
 
-        const fetchPokemons = async () => {
-            for (let i = 1; i < pokemonCount; i++) {
-                await getPokemons(i);
-            }
-        };
+      const fetchPokemons = async () => {
+        for (let i = 1; i < pokemonCount; i++) {
+          await getPokemons(i);
+        }
+      };
 
-        const getPokemons = async (id) => {          
-            const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-            const resp = await fetch(url);
-            const data = await resp.json();
-            pokemonCard(data);
-        };
+      const getPokemons = async (id) => {
+        const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+        const resp = await fetch(url);
+        const data = await resp.json();
+        pokemonCard(data);
+      };
 
-        const pokemonCard = (poke) => {
+      const pokemonCard = (poke) => {
         const card = document.createElement('div');
         card.classList.add("pokemon");
 
@@ -71,78 +69,76 @@
         const pokemonTypes = poke.types.map(type => type.type.name);
         const color = getBackgroundColor(pokemonTypes);
 
-        card.style.backgroundColor = color;
+        const backgroundColor = getBackgroundColor(pokemonTypes);
+        const backgroundImage = getBackgroundImage(pokemonTypes);
+
+        card.style.backgroundColor = backgroundColor;
+        card.style.backgroundImage = `url(${backgroundImage})`;
 
         const typesHTML = pokemonTypes.map(type => {
-        const typeClass = getTypeClass(type);
-        return `<span class="type ${typeClass}">${type}</span>`;
-    }).join(' ');
+          const typeClass = getTypeClass(type);
+          return `<span class="type ${typeClass}">${type}</span>`;
+        }).join(' ');
 
         const pokemonInnerHTML = `
-
-          <div class="vercomprar">
-
-            <a href="info.html">
-              <button>Ver</button>
-            </a>
-
-          </div>    
-
           <div class="imgContainer">
-              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${poke.id}.png" alt="${name}">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${poke.id}.png" alt="${name}">
           </div>
-          
           <div class="info">
               <span class="number">#${id}</span>
               <h3 class="name">${name}</h3>
               <small class="types">${typesHTML}</small>
           </div>
-        `;
-    card.innerHTML = pokemonInnerHTML;
+          <button class="capturar-button" onclick="capturarPokemon(${poke.id})">
+            <img src="https://kartinki.pics/uploads/posts/2021-07/1626888693_3-kartinkin-com-p-pokebol-pokeball.png" alt="Capturar">
+          </button>
+      </div>
+      `;
+      
+      card.innerHTML = pokemonInnerHTML;
+      pokeContainer.appendChild(card);
+  };
 
-    if (pokeContainer) {
-        pokeContainer.appendChild(card);
-    } else {
-        console.error("Elemento com ID 'pokeContainer' não encontrado.");
-    }
-};
+  const getBackgroundColor = (types) => {
+      const type = types[0];
+      return colors[type];
+  };
 
-function getTypeClass(type) {
-    const lowercaseType = type.toLowerCase();
-    
-    // Mapeia o tipo para a classe correspondente
-    const typeClassMap = {
-        normal: 'normal-type',
-        fire: 'fire-type',
-        water: 'water-type',
-        grass: 'grass-type',
-        flying: 'flying-type',
-        fighting: 'fighting-type',
-        poison: 'poison-type',
-        electric: 'electric-type',
-        ground: 'ground-type',
-        rock: 'rock-type',
-        psychic: 'psychic-type',
-        ice: 'ice-type',
-        bug: 'bug-type',
-        ghost: 'ghost-type',
-        steel: 'steel-type',
-        dragon: 'dragon-type',
-        dark: 'dark-type',
-        fairy: 'fairy-type'
-        // Adicione mais tipos conforme necessário
-    };
+  const getBackgroundImage = (types) => {
+      const type = types[0].toLowerCase();
+      return `https://pokeapi.co/media/sprites/pokemon/other/official-artwork/${type}.png`;
+  };
 
-    return typeClassMap[lowercaseType] || '';
-}
+  const getTypeClass = (type) => {
+      return type.toLowerCase();
+  };
 
-function getBackgroundColor(types) {
-    // pega a cor do primeiro tipo
-    return colors[types[0]] || colors.normal;
-}
-        fetchPokemons();
-    });
-  </script>
+  const capturarPokemon = (id) => {
+      const capturedContainer = document.querySelector('#capturedContainer');
+      const pokemonCard = document.querySelector(`.pokemon[data-id="${id}"]`);
+
+      pokemonCard.remove();
+      capturedContainer.appendChild(pokemonCard);
+  };
+
+  const openTab = (tabName) => {
+      const tabcontent = document.getElementsByClassName("tabcontent");
+      for (let i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+      }
+
+      const tablinks = document.getElementsByClassName("tablink");
+      for (let i = 0; i < tablinks.length; i++) {
+          tablinks[i].classList.remove("active");
+      }
+
+      document.getElementById(tabName).style.display = "block";
+      event.currentTarget.classList.add("active");
+  };
+
+  fetchPokemons();
+});
+</script>
 
 </body>
 

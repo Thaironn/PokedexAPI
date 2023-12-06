@@ -1,26 +1,34 @@
-let cor = "red"
-                  if(type.includes("water")){
-                    cor = "blue"
-                  }
+<!DOCTYPE html>
+<html lang="en">
 
-                  <!DOCTYPE html>
-                  <html lang="en">
-                  <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Document</title>
-                  </head>
-                  <body>
-                    
-                    const tipo = document.createElement('div');  
+<head>
+  <!-- ... (mesmo conteúdo) ... -->
+  <title>Nova Página</title>
+</head>
 
-                    
-                individualData.types.forEach(type => {
-                    const typeImg = document.createElement('img');
-                    typeImg.src = type.url;
-                    typeImg.alt = type.type.name;
-                    tipo.appendChild(typeImg)
-                  });
+<body>
 
-                  </body>
-                  </html>
+  <h1>Detalhes do Pokémon</h1>
+
+  <div id="detalhesPokemon">
+    <!-- As informações do Pokémon serão exibidas aqui -->
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const detalhesPokemon = document.getElementById('detalhesPokemon');
+      const capturedPokemons = JSON.parse(sessionStorage.getItem('capturedPokemons')) || [];
+
+      if (capturedPokemons.length > 0) {
+        // Fazer uma requisição ou manipulação com base nos IDs dos Pokémon capturados
+        // Aqui você pode usar a API ou qualquer outra lógica necessária
+        detalhesPokemon.textContent = `Pokémons Capturados: ${capturedPokemons.join(', ')}`;
+      } else {
+        detalhesPokemon.textContent = 'Nenhum Pokémon capturado.';
+      }
+    });
+  </script>
+
+</body>
+
+</html>

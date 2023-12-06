@@ -2,11 +2,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Pokemon Solid', sans-serif;
 }
 
+@import url('https://fonts.cdnfonts.com/css/pokemon-solid');
+
 body {
-  background-color: rgb(234, 222, 246);
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,8 +26,6 @@ h1 {
 }
 
 button {
-  background-color: #3e3f3e;
-  color: white;
   margin-bottom: 10px;
   padding: 7px 15px;
   font-size: 16px;
@@ -60,7 +60,6 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(183, 133, 133);
   border-radius: 50%;
   width: 120px;
   height: 120px;
@@ -87,21 +86,38 @@ button:hover {
 
 
 .type.normal-type {
-  background-color: #8b3131;
   color: rgb(148, 141, 141);
   /* Adicione outros estilos conforme necessário */
 }
 
 .type.fire-type {
-  background-color: #837777;
   color: rgb(230, 32, 32);
   /* Adicione outros estilos conforme necessário */
 }
 
 .type.water-type {
-  background-color: #0c7aad;
   color: rgb(255, 208, 208);
   /* Adicione outros estilos conforme necessário */
 }
 
 /* Continue para os outros tipos... */
+
+a.pokemon {
+  color: #333; /* Cor do texto dentro da tag <a> */
+  text-decoration: none;
+}
+
+a.pokemon:hover {
+  color: #555; /* Cor do texto ao passar o mouse */
+}
+
+.capturar-button {
+  margin-top: 10px; /* Espaçamento entre o texto e o botão */
+  padding: 8px 16px;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
