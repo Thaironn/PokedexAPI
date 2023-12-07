@@ -9,6 +9,13 @@
 
 <body>
 
+  <button>
+    <a href="info.html?id=${id}">
+        <img src="caminho/para/sua/imagem.png" alt="Texto Alternativo da Imagem">
+    </a>
+</button>
+
+
   <div class="tabs">
     <button class="tablink" onclick="openTab('pokemonsTab')">Pokémons</button>
     <button class="tablink" onclick="openTab('pokedexTab')">Pokédex</button>
@@ -70,10 +77,8 @@
         const color = getBackgroundColor(pokemonTypes);
 
         const backgroundColor = getBackgroundColor(pokemonTypes);
-        const backgroundImage = getBackgroundImage(pokemonTypes);
 
         card.style.backgroundColor = backgroundColor;
-        card.style.backgroundImage = `url(${backgroundImage})`;
 
         const typesHTML = pokemonTypes.map(type => {
           const typeClass = getTypeClass(type);

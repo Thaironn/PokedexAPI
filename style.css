@@ -17,17 +17,24 @@ body {
   }
   
   .pokemon-card {
-    margin: 10px;
-    padding: 10px;
+    margin: 17px;
+    padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgb(100, 100, 100, 0.5);
+    text-align: center;
+    width: 120px;
+    position: relative;
   }
   
   .pokemon-img {
     max-width: 100px;
     max-height: 100px;
     margin-bottom: 10px;
+    background: rgb(110, 110, 110);
+    border: 1px solid;
+    border-radius: 10px;
+    order: 2;
   }
   
   .capture-btn {
@@ -39,3 +46,25 @@ body {
     cursor: pointer;
   }
   
+  a {
+    text-decoration: none; /* Remove sublinhado */
+    color: inherit; /* Mantém a cor padrão do texto */
+}
+
+button {
+  border: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+  text-decoration: none; /* Remove sublinhado do texto */
+  display: inline; /* Permite que o botão se ajuste ao conteúdo interno */
+}
+
+/* Estilo da imagem dentro do botão */
+button img {
+  width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 5px;
+    right: 6px;
+}

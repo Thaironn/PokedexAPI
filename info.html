@@ -3,9 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informação do pokemon</title>
+    <title>Informação do Pokémon</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
+    <div id="pokemonDetails"></div>
+
+    <script>
+        async function carregarDetalhesDoPokemon() {
+            const informacaoURL = new URLSearchParams(window.location.search);
+            const id = informacaoURL.get('id');
+            const fetchPokemon = async (id) => {
+                const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+                const resp = await fetch(url);
+                const data = await resp.json();
+                return data;
+            };
+
+            const pokemon = await fetchPokemon(id);
+
+            const divDetalhesPokemon = document.getElementById('pokemonDetails');
+
+            divDetalhesPokemon.innerHTML = `
+                <h2>${pokemon.name}</h2>
+                <h3>Tipo: ${pokemon.types.map(type => type.type.name).join(', ')}</h3>
+                <!-- Adicione mais informações conforme necessário -->
+            `;
+        }
+
+        carregarDetalhesDoPokemon(); // Chame a função ao carregar a página
+
+    </script>
+
 </body>
+
 </html>
