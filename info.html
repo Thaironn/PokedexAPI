@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,13 @@
 </head>
 
 <body>
+
+    <header>
+        <h1 style="color:beige;">Detalhes do Pokémon</h1>
+        <nav>
+            <a href="index.html">Voltar para a Pokedex</a>
+        </nav>
+    </header>
 
     <div id="pokemonDetails"></div>
 
@@ -27,13 +35,31 @@
             const divDetalhesPokemon = document.getElementById('pokemonDetails');
 
             divDetalhesPokemon.innerHTML = `
-                <h2>${pokemon.name}</h2>
-                <h3>Tipo: ${pokemon.types.map(type => type.type.name).join(', ')}</h3>
-                <!-- Adicione mais informações conforme necessário -->
+                <div style="text-align: center";>
+                    <h2>${pokemon.name.toUpperCase()}</h2>
+                    <h3 class="type ${pokemon.types[0].type.name}-type">${pokemon.types.map(type => type.type.name).join(', ')}</h3>
+                    <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+                    <img src="${pokemon.sprites.back_default}" alt="${pokemon.name}">
+                </div>
+                
+                <div>
+                    <h3 style="text-align: center">Status</h3>
+                    <ul>
+                        ${pokemon.stats.map(stat => `<li>${stat.stat.name.toUpperCase()} - ${stat.base_stat}</li>`).join('')}
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 style="text-align: center">Movimentos</h3>
+                    <ul>
+                        ${pokemon.moves.slice(0, 5).map(move => `<li>${move.move.name.toUpperCase()}</li>`).join('')}
+                        ${pokemon.moves.length > 5 ? '<li>...</li>' : ''}
+                    </ul>
+                </div>
             `;
         }
 
-        carregarDetalhesDoPokemon(); // Chame a função ao carregar a página
+        carregarDetalhesDoPokemon();
 
     </script>
 

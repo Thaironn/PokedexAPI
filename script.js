@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       ground: '#f4e7da',
       rock: '#d5d5d4',
       fairy: '#fceaff',
-      poison: '#98d7a5',
-      bug: '#f8d5a3',
+      poison: '#993399',
+      bug: '#228B22',
       dragon: '#97b3e6',
       psychic: '#eaeda1',
       flying: '#F5F5F5',
@@ -59,7 +59,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       info.innerHTML = `
           <p><strong>${name}</strong></p>
           <p>#${id}</p>
-          <p>${types}</p>
+
+          <div class="types">
+            <p>${typesHTML}</p>
+          </div>
 
           <button>
             <a href="info.html?id=${id}">
@@ -67,6 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             </a>
           </button>
       `;
+
 
       const captureBtn = document.createElement('button');
       captureBtn.textContent = 'Capture';
@@ -91,9 +95,31 @@ document.addEventListener('DOMContentLoaded', async () => {
       return colors[primaryType] || '#FFFFFF'; 
   };
 
-  const getTypeClass = (type) => {
-      return '';
-  };
+  function getTypeClass(type) {
+    const lowercaseType = type.toLowerCase();
+    const typeClassMap = {
+      normal: 'normal-type',
+      fire: 'fire-type',
+      water: 'water-type',
+      grass: 'grass-type',
+      flying: 'flying-type',
+      fighting: 'fighting-type',
+      poison: 'poison-type',
+      electric: 'electric-type',
+      ground: 'ground-type',
+      rock: 'rock-type',
+      psychic: 'psychic-type',
+      ice: 'ice-type',
+      bug: 'bug-type',
+      ghost: 'ghost-type',
+      steel: 'steel-type',
+      dragon: 'dragon-type',
+      dark: 'dark-type',
+      fairy: 'fairy-type'
+    };
+
+  return typeClassMap[lowercaseType] || '';
+}
 
   fetchPokemons();
 });
