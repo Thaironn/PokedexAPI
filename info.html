@@ -10,7 +10,7 @@
 
 <body>
 
-    <header>
+    <header id="pokemonHeader">
         <h1 style="color:beige;">Detalhes do Pokémon</h1>
         <nav>
             <a href="index.html">Voltar para a Pokedex</a>
@@ -32,12 +32,19 @@
 
             const pokemon = await fetchPokemon(id);
 
+            const headerDetalhesPokemon = document.getElementById('pokemonHeader');
             const divDetalhesPokemon = document.getElementById('pokemonDetails');
+
+            // Use o estilo do header para definir a cor de fundo com base no tipo principal do Pokémon
+            headerDetalhesPokemon.style.backgroundColor = getColorForType(pokemon.types[0].type.name);
+
+            // Crie uma string HTML que inclua todos os tipos com cores diferentes
+            const typesHTML = pokemon.types.map(type => `<span class="type ${type.type.name}-type">${type.type.name}</span>`).join(' ');
 
             divDetalhesPokemon.innerHTML = `
                 <div style="text-align: center";>
                     <h2>${pokemon.name.toUpperCase()}</h2>
-                    <h3 class="type ${pokemon.types[0].type.name}-type">${pokemon.types.map(type => type.type.name).join(', ')}</h3>
+                    <h3 class="types">${typesHTML}</h3>
                     <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
                     <img src="${pokemon.sprites.back_default}" alt="${pokemon.name}">
                 </div>
@@ -57,6 +64,50 @@
                     </ul>
                 </div>
             `;
+        }
+
+        // Função para obter a cor com base no tipo do Pokémon
+        function getColorForType(type) {
+            switch (type) {
+                case 'normal':
+                    return 'gray';
+                case 'fire':
+                    return 'red';
+                case 'water':
+                    return 'blue';
+                case 'grass':
+                    return 'green';
+                case 'flying':
+                    return 'lightblue';
+                case 'fighting':
+                    return 'darkred';
+                case 'poison':
+                    return 'purple';
+                case 'electric':
+                    return 'yellow';
+                case 'ground':
+                    return 'saddlebrown';
+                case 'rock':
+                    return 'dimgray';
+                case 'psychic':
+                    return 'violet';
+                case 'ice':
+                    return 'lightcyan';
+                case 'bug':
+                    return 'greenyellow';
+                case 'ghost':
+                    return 'darkslategray';
+                case 'steel':
+                    return 'silver';
+                case 'dragon':
+                    return 'indigo';
+                case 'dark':
+                    return 'black';
+                case 'fairy':
+                    return 'pink';
+                default:
+                    return 'gray';
+            }
         }
 
         carregarDetalhesDoPokemon();
