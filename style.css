@@ -79,126 +79,126 @@ button img {
   background: rgb(148, 141, 141);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.fire-type {
   background: rgb(255, 102, 102);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.water-type {
   background: rgb(119, 187, 255);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.grass-type {
   background: rgb(66, 241, 66);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.flying-type {
   background: rgb(245, 245, 245);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.fighting-type {
   background: rgb(234, 240, 241);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.poison-type {
   background: rgb(153, 102, 204);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.electric-type {
   background: rgb(251, 255, 0);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.ground-type {
   background: rgb(255, 199, 144);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.rock-type {
   background: rgb(213, 213, 212);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.psychic-type {
   background: rgb(222, 161, 237);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.ice-type {
   background: rgb(173, 216, 230);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.bug-type {
   background: rgb(181, 239, 110);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.ghost-type {
   background: rgb(60, 60, 73);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.steel-type {
   background: rgb(166, 166, 166);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.dragon-type {
   background: rgb(124, 166, 244);
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.dark-type {
   background: purple;
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 .type.fairy-type {
   background: pink;
   border-radius: 3px;
   border: 1px solid;
-  padding: 5px;
+  padding: 4px;  text-transform: capitalize;
 }
 
 /*----------------------------------------------------------------------------------Informação Pokemons*/
@@ -235,7 +235,7 @@ header a {
   list-style-type: none;
   margin-bottom: 10px;
   margin: 0px 85px;
-  line-height: 26px
+  line-height: 26px;
 }
 
 #pokemonDetails img {
