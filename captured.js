@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       card.appendChild(img);
       card.appendChild(info);
-      card.appendChild(document.createElement('br')); // Adiciona uma quebra de linha
+      card.appendChild(document.createElement('br')); 
       card.appendChild(removeButton);
 
       capturedContainer.appendChild(card);
@@ -83,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const getBackgroundColor = (types) => {
-    // Use a cor do primeiro tipo ou a cor padrão se não houver tipos
     const firstType = types.length > 0 ? types[0].type.name : 'normal';
     return colors[firstType] || '#FFFFFF'; 
   };
