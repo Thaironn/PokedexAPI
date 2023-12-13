@@ -2,20 +2,24 @@ document.addEventListener('DOMContentLoaded', async () => {
   const pokeContainer = document.getElementById('pokeContainer');
   const pokemonCount = 24;
   const colors = {
-      fire: '#FF0000',
-      grass: '#90EE90',
-      electric: '#FCF7DE',
-      water: '#DEF3FD',
-      ground: '#f4e7da',
-      rock: '#d5d5d4',
-      fairy: '#fceaff',
-      poison: '#993399',
-      bug: '#228B22',
-      dragon: '#97b3e6',
-      psychic: '#eaeda1',
-      flying: '#F5F5F5',
-      fighting: '#E6E0D4',
-      normal: '#F5F5F5'
+    normal: '#A8A878',
+    fire: '#F08030',
+    water: '#6890F0',
+    grass: '#78C850',
+    flying: '#A890F0',
+    fighting: '#C03028',
+    poison: '#A040A0',
+    electric: '#F8D030',
+    ground: '#E0C068',
+    rock: '#B8A038',
+    psychic: '#F85888',
+    ice: '#98D8D8',
+    bug: '#A8B820',
+    ghost: '#705898',
+    steel: '#B8B8D0',
+    dragon: '#7038F8',
+    dark: '#705848',
+    fairy: '#EE99AC'
   };
 
   const fetchPokemons = async () => {
