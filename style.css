@@ -9,6 +9,11 @@ body {
     background-color: #f2f2f2;
   }
   
+  .btn{
+    display: flex;
+    justify-content: center;
+    
+  }
   h1 {
     text-align: center;
     color: #333;
@@ -56,9 +61,10 @@ body {
 }
 
 button {
+  display: flex;
   border: none;
   padding: 0;
-  background: none;
+  align-items: center;
   cursor: pointer;
   text-decoration: none; /* Remove sublinhado do texto */
   display: inline; /* Permite que o botão se ajuste ao conteúdo interno */
