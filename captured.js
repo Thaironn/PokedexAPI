@@ -10,13 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const createCapturedPokemonCard = (pokemon) => {
-    // Verificar se o Pokémon já está na página
     const existingCard = document.querySelector(`.captured-pokemon-card[data-id="${pokemon.id}"]`);
 
     if (!existingCard) {
       const card = document.createElement('div');
-      card.classList.add('pokemon-card', 'captured-pokemon-card'); // Adiciona ambas as classes
-      card.setAttribute('data-id', pokemon.id); // Adiciona um atributo de dados para identificar o Pokémon
+      card.classList.add('pokemon-card', 'captured-pokemon-card'); 
+      card.setAttribute('data-id', pokemon.id);
 
       const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
       const id = pokemon.id.toString().padStart(3, '0');
@@ -36,15 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const removeButton = document.createElement('button');
       removeButton.textContent = 'Remover';
-      removeButton.classList.add('capture-btn'); // Adiciona a classe do botão de captura
+      removeButton.classList.add('capture-btn'); 
       removeButton.addEventListener('click', () => {
-        // Chama a função para remover o Pokémon quando o botão "Remover" é clicado
         removeCapturedPokemon(pokemon.id);
       });
 
-      // Adiciona estilos personalizados ao card
-      card.style.backgroundColor = '#fff'; // Cor de fundo padrão
-      info.style.color = '#333'; // Cor do texto padrão
+    
+      card.style.backgroundColor = '#fff';
+      info.style.color = '#333'; 
 
       card.appendChild(img);
       card.appendChild(info);
@@ -54,12 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Função para remover o Pokémon do array e atualizar a sessionStorage
+
   const removeCapturedPokemon = (pokemonId) => {
     capturedPokemons = capturedPokemons.filter(pokemon => pokemon.id !== pokemonId);
     sessionStorage.setItem('capturedPokemons', JSON.stringify(capturedPokemons));
-
-    // Atualiza a exibição
     displayCapturedPokemons();
   };
 
