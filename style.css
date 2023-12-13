@@ -56,8 +56,8 @@ body {
   }
   
   a {
-    text-decoration: none; /* Remove sublinhado */
-    color: inherit; /* Mantém a cor padrão do texto */
+    text-decoration: none;
+    color: inherit;
 }
 
 button {
@@ -66,11 +66,11 @@ button {
   padding: 0;
   align-items: center;
   cursor: pointer;
-  text-decoration: none; /* Remove sublinhado do texto */
-  display: inline; /* Permite que o botão se ajuste ao conteúdo interno */
+  text-decoration: none;
+  display: inline;
 }
 
-/* Estilo da imagem dentro do botão */
+
 button img {
   width: 20px;
   height: 20px;
@@ -79,7 +79,6 @@ button img {
   right: 6px;
 }
 
-/* Tipos dos pokemon */
 
 .type.normal-type {
   background: rgb(148, 141, 141);
